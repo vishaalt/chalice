@@ -170,10 +170,7 @@ class BasePlannerTests(object):
         return self.last_plan.instructions
 
     def filter_api_calls(self, plan):
-        api_calls = []
-        for instruction in plan:
-            if isinstance(instruction, models.APICall):
-                api_calls.append(instruction)
+        api_calls = [instruction for instruction in plan if isinstance(instruction, models.APICall)]
         return api_calls
 
     def assert_recorded_values(self, plan, resource_type, resource_name,
